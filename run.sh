@@ -1,0 +1,1 @@
+FLASK_APP=herd-sentiment/app.py flask run

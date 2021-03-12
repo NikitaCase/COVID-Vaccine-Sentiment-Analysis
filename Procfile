@@ -1,0 +1,1 @@
+web: gunicorn herd-sentiment.app:app
