@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- Other Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+
+    
+    
+    <title>Covid Vaccine Sentiment</title>
+
+</head>
+<body>
+
+
+<!-- ---------------------------------------------------------------- -->
+<!----------------------------- NAVIGATION ---------------------------->
+
+<ul class="nav nav-tabs">
+
+    <li class="nav-item">
+      <a class="nav-link active" href="#Introduction">Introduction</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#Methods">Methods</a>
+      </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#Results" role="button" aria-haspopup="true" aria-expanded="false">Results</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#Timeline">Timeline</a>
+        <a class="dropdown-item" href="#Popularity">Popularity</a>
+        <a class="dropdown-item" href="#Map">Map</a>
+        <a class="dropdown-item" href="#TextBlob">Text Blob</a>
+        <a class="dropdown-item" href="#SampleTweet">Sample Tweet</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#DataTable">Data Table</a>
+      </div>
+
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#Discussion">Discussion</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#References">References</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#About Me">About Me</a>
+      </li> 
+  </ul>
+
+<!-- ------------------------content------------------------------ -->
+<div class="container">
+
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ------------------------INTRO------------------------------ -->
+
+    <div class="row" id="Introduction"> 
+        <div class="col-md-12">
+<h2>Introduction</h2>
+<hr>
+            <p>
+This project analyzes tweets about Covid Vaccine in the last 7 days.
+            </p>
+        </div>
+    </div>
+
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ------------------------METHODS------------------------------ -->
+   
+<div class="row" id="Methods"> 
+        <div class="col-md-12">
+            <h2>Methods</h2>
+            <hr>
+
+            <ol>
+                <li>
+                    API keys were obtained from Twitter
+                </li>
+                <li>
+                    API was accessed using Python and Tweepy to collect all tweets which mentioned the following:<br>
+                    Covid Vaccine, Covid-19 Vaccine, Moderna, Pfizer, Pfizer-BioNTech, AstraZeneca, Astra Zeneca<br> 
+                    This data excluded retweets. 
+                </li>
+                <li>
+                    Tweets were cleaned and sorted using Pandas and exported to csvs and an SQL database
+                </li>
+                <li>
+                    Tweets were analysed for sentiment using someting or the other
+                </li>
+                <li>
+                    Aggregation was performed on the analyzed tweets to create visualizations 
+                
+                </li>
+
+
+            </ol>
+            <p></p>
+
+<p>Jansen Vaccine not Included in final list because it was approved on March 5th and data collection started on March 7th. 
+<br> 
+More thorough methodology can be found in the readme <a href="https://github.com/NikitaCase/covid-sentiments/blob/main/README.md" target="_blank">here.</a>
+</p>
+        </div>
+    </div>
+    
+   
+    
+<!-- ---------------------------------------------------------------- -->
+<!-- ------------------------RESULTS------------------------------ -->
+    <div class="row" id="Results"> 
+    <div class="col-md-12">
+    <h2>Results</h2>
+        <hr>
+           
+<!-------- Timeline  -------->
+<div class="row" id="Timeline">
+    <div class="plot" id="p-time">
+
+    </div>
+</div>
+            
+
+<!-------- Popularity  -------->
+<div class="row" id="Popularity">
+    <div class="plot" id="p-popular">
+
+    </div>
+
+</div>
+                       
+            
+<!-------- Map  -------->
+<div class="row" id="Map">
+    <div class="plot" id="p-map">
+
+    </div>
+
+</div>
+            
+
+<!-------- Text Blob -------->
+<div class="row" id="#TextBlob">
+
+</div>
+                        
+            
+<!-------- Sample Tweet  -------->
+<div class="row" id="#SampleTweet">
+
+</div>
+            
+
+<!-------- Data Table  -------->
+<div class="row" id="#DataTable">
+
+</div>
+
+
+<!-- end block  -->
+        </div>
+    </div>
+    
+    
+    
+<!-- ---------------------------------------------------------------- -->
+<!-- ------------------------DISCUSSION------------------------------ -->
+    <div class="row" id="Discussion"> 
+        <div class="col-md-12">
+            <h2>Discussion</h2>
+            <hr>
+            <p></p>
+
+        </div>
+    </div>
+    
+    
+
+<!-- ---------------------------------------------------------------- -->    
+<!-- ------------------------CONCLUSION------------------------------ -->
+    <div class="row" id="Conclusion"> 
+        <div class="col-md-12">
+            <h2>Conclusion</h2>
+            <hr>
+            <p>Do I really need this section ? </p>
+        </div>
+    </div>
+    
+    
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ------------------------REFERENCES------------------------------ -->
+    <div class="row" id="References"> 
+        <div class="col-md-12">
+            <h2>References</h2>
+            <hr>
+        <ul>
+            <li> 
+                <a href="" target="_blank">Twitter API</a>
+            </li>
+            <li> 
+                <a href="" target="_blank">Statistics Canada</a>
+            </li>
+            <li> 
+                <a href="" target="_blank"></a>
+            </li>
+
+
+        </ul>
+
+        </div>
+    </div>
+    
+    
+<!-- ---------------------------------------------------------------- -->
+<!-- ------------------------ABOUT-ME------------------------------ -->
+    <div class="row" id="About-Me"> 
+        <div class="col-md-12">
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ------------------------- DEPENDENCIES ----------------------- -->
+<!-- Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<!-- D3  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+<!-- Plotly -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="{{ url_for('static', filename='config.js') }}"></script>
+<script src="{{ url_for('static', filename='maps.js') }}"></script>
+<script src="{{ url_for('static', filename='plots.js') }}"></script>
+
+</body>
+</html>
