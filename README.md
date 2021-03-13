@@ -32,7 +32,7 @@ Amazon Web Services
 
 ##### Technology and Languages
 * Python
-* Pandas - 
+* Pandas - for data cleaning
 * Tweepy - Library for accessing Twitter's API
 * TextBlob  - For polarity and subjectivity scores
 * Scipy - ttests of means of retweets and likes across positve and negative tweets
@@ -168,6 +168,13 @@ def popularity():
     return jsonify(lined)
     
 ```
+
+
+### Links
+
+[Twtter API Documentation](https://developer.twitter.com/en/docs/twitter-api)
+
+[Tweepy Documentation](https://docs.tweepy.org/en/latest/)
 
 
 :smile_cat: Nikita Case
