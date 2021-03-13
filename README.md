@@ -5,7 +5,7 @@
 
 
 ### Goal
-The goal of this project is to perform sentiment analysis of tweets relating to the COVID-19 Vaccines. These sentiments will be used along with geographical data to highlight areas of positive and negative sentiment across Canada and the USA. Retweets and likes will be analyzed to compare the popularity of positive vs negative tweets across the two countries
+The goal of this project is to perform sentiment analysis of tweets relating to the COVID-19 Vaccines. These sentiments will be used along with geographical data to highlight areas of positive and negative sentiment across Canada. Retweets and likes will be analyzed to compare the popularity of positive vs negative tweets between Canda and the USA. Other countries will be colourised based on their overall polarity scores (degree of positivity in the scores). 
 
 This data will be stored to an online database and deployed as a Flask app using Amazon Web Services (AWS). This will allow users to interact with visualizations that show:
 * Where tweets are comming from
@@ -35,7 +35,7 @@ Amazon Web Services
 * Pandas - 
 * Tweepy - Library for accessing Twitter's API
 * TextBlob  - For polarity and subjectivity scores
-* Scipy - for statistical analysis
+* Scipy - ttests of means of retweets and likes across positve and negative tweets
 * SQLAlchemy - for CRUD
 * Flask
 * Flask SQLAlchemy - to load cleaned and analyzed data into flask app using various API routes
@@ -168,7 +168,6 @@ def popularity():
     return jsonify(lined)
     
 ```
-
 
 
 :smile_cat: Nikita Case
