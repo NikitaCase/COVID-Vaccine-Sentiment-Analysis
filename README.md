@@ -123,7 +123,7 @@ def RateTweets(df):
 
 Section of analyzed dataset 
 
-![tweets_df](herd-sentiments/static/images/ss-tweets_df.png)
+![tweets_df](herd-sentiment/static/images/ss-tweets_df.png)
 
 
 ### Flask App
