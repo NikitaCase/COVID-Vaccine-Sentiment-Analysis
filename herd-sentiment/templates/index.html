@@ -22,6 +22,55 @@
     <!-- ---------------------------------------------------------------- -->
     <!----------------------------- NAVIGATION ---------------------------->
 
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#Introduction">Introduction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Methods">Methods</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#Results" role="button" aria-haspopup="true" aria-expanded="false">Results</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#Timeline">Timeline</a>
+                            <a class="dropdown-item" href="#Popularity">Popularity</a>
+                            <a class="dropdown-item" href="#Map">Map</a>
+                            <a class="dropdown-item" href="#TextBlob">Text Blob</a>
+                            <a class="dropdown-item" href="#SampleTweet">Sample Tweet</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#DataTable">Data Table</a>
+                        </div>
+            
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Discussion">Discussion</a>
+                    </li>
+            
+                    <li class="nav-item">
+                        <a class="nav-link" href="#References">References</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#About Me">About Me</a>
+                    </li>
+                </ul>
+
+          </div>
+        </div>
+      </nav>
+
+
+
+    <!-- <nav class="navbar sticky-top navbar-light bg-light">
+        <div class="container-fluid">
     <ul class="nav nav-tabs">
 
         <li class="nav-item">
@@ -55,6 +104,7 @@
             <a class="nav-link" href="#About Me">About Me</a>
         </li>
     </ul>
+    </div></nav> -->
 
     <!-- ------------------------content------------------------------ -->
     <div class="container">
@@ -251,8 +301,9 @@
     <script src="{{ url_for('static', filename='js/config.js') }}"></script>
     <script src="{{ url_for('static', filename='js/maps.js') }}"></script>
     <script src="{{ url_for('static', filename='js/plots.js') }}"></script>
-    <!-- Chart js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    <!-- Chart js
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script> -->
+    
 
 </body>
 
