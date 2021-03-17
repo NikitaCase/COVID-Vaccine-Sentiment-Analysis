@@ -6,21 +6,18 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
-from config import db
+from config import conn
 
 
 # ------------------------------------------------------------------------------
 # Create an engine for the database
 # ------------------------------------------------------------------------------
-
-engine = create_engine(db, echo=False)   
+engine = create_engine(conn, echo=False)   
 
 # Reflect Database into ORM classes
-# ------------------------------------------------------------------------------
 Base = automap_base()
 Base.prepare(engine, reflect=True)
 
-# print(Base.classes.keys())
 
 # ------------------------------------------------------------------------------
 # Flask Setup
@@ -28,7 +25,7 @@ Base.prepare(engine, reflect=True)
 app = Flask(__name__)
 
 
-# Frontend Route and Homepage
+# Frontend Route
 # ------------------------------------------------------------------------------
 @app.route("/")
 def home():
@@ -36,68 +33,52 @@ def home():
 
 
 # Backend Routes:
-# Timeline
-# ------------------------------------------------------------------------------
-
-# for some reason doesnt work in flask but works in jupyter 
-@app.route('/timeline2')
-def timeline2():
-
-    airlines = Base.classes.airlines
-    session = Session(engine)
-    
-    lines = session.query(airlines.id_str, airlines.date, airlines.Sentiment, airlines.Polarity, airlines.retweet_count).all()
-
-    lined = {'timeline':[{
-        'id_str': [col[0] for col in lines], 
-        'date': [col[1] for col in lines], 
-        'sentiment': [col[2] for col in lines],
-        'polarity': [col[3] for col in lines],
-        'retweet_count': [col[4] for col in lines]  
-    }]}
-
-    session.close()
-    return jsonify(lined)
-
-# @app.route("/timeline")
-# def timeline():
-#     lines = session.query(airlines.id_str, airlines.date, airlines.Sentiment, airlines.Polarity, airlines.retweet_count).all()
-
-
-#     time_line = []
-#     for col in lines:
-#         time_dict = {
-#         'id_str': col[0], 
-#         'date': col[1], 
-#         'sentiment': col[2],
-#         'polarity': col[3],
-#         'retweet_count': col[4]
-#         }
-#         time_line.append(time_dict)
-#     return jsonify(time_line)
-
 
 # Map
 # ------------------------------------------------------------------------------
 @app.route('/map')
 def map():
 
-    airlines = Base.classes.airlines
+    tweets = Base.classes.twt100
     session = Session(engine)
     
-    lines = session.query(airlines.id_str, airlines.latitude, airlines.longitude, airlines.Sentiment).all()
+    rows = session.query(tweets.id_str, tweets.created, tweets.Sentiment, tweets.location, tweets.geo_enabled, tweets.geo, tweets.coords).all()
 
-    loc = { 'loc':[{
-            'id_str':[col[0] for col in lines], 
-            'latitude': [col[1] for col in lines], 
-            'longitude': [col[2] for col in lines],
-            'sentiment': [col[3] for col in lines] }
-            ]}
-    
+    lined = {'location':[{
+        'id_str': [col[0] for col in rows], 
+        'created': [col[1] for col in rows], 
+        'sentiment': [col[2] for col in rows],
+        'location': [col[3] for col in rows],
+        'geo_enabled': [col[4] for col in rows],
+        'geo': [col[5] for col in rows],
+        'coords': [col[6] for col in rows]
+    }]}
+
     session.close()
-    return jsonify(loc)
+    return jsonify(lined)
 
-      
+
+# Popularity
+# ------------------------------------------------------------------------------
+@app.route('/popularity')
+def popularity():
+
+    tweets = Base.classes.twt100
+    session = Session(engine)
+    
+    rows = session.query(tweets.id_str, tweets.created, tweets.Sentiment, tweets.retweet_count, tweets.tweet_favourite_count, tweets.location).all()
+
+    pop = {'popularity':[{
+        'id_str': [col[0] for col in rows], 
+        'created': [col[1] for col in rows], 
+        'sentiment': [col[2] for col in rows],
+        'retweets': [col[3] for col in rows],
+        'likes': [col[4] for col in rows], 
+        'location': [col[5] for col in rows]
+    }]}
+
+    session.close()
+    return jsonify(pop)
 
 
 if __name__ == "__main__":
