@@ -6,13 +6,13 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
-from config import conn
+from config import conn2
 
 
 # ------------------------------------------------------------------------------
 # Create an engine for the database
 # ------------------------------------------------------------------------------
-engine = create_engine(conn, echo=False)   
+engine = create_engine(conn2, echo=False)   
 
 # Reflect Database into ORM classes
 Base = automap_base()
@@ -80,6 +80,22 @@ def popularity():
     session.close()
     return jsonify(pop)
 
+
+
+# Manufacturer
+# ------------------------------------------------------------------------------
+@app.route('/manufacturer')
+def manufacturer():
+
+    tweets = Base.classes.manufacturer
+    session = Session(engine)
+    
+    mo = session.query(tweets.retweets, tweets.likes, tweets.Subjectivity, tweets.Polarity, tweets.manufacturer).filter(tweets.manufacturer =='mo').all()
+    az = session.query(tweets.retweets, tweets.likes, tweets.Subjectivity, tweets.Polarity, tweets.manufacturer).filter(tweets.manufacturer =='az').all()
+    pf = session.query(tweets.retweets, tweets.likes, tweets.Subjectivity, tweets.Polarity, tweets.manufacturer).filter(tweets.manufacturer =='pf').all()
+
+    session.close()
+    return jsonify(pop)
 
 if __name__ == "__main__":
     app.run()
