@@ -31,53 +31,14 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="#Introduction">Intro</a>
-                    <a class="nav-link" href="#Methods">Methods</a>
-                    <a class="nav-link" href="#References">Reference</a>
                     <a class="nav-link" href="#Results">Results</a>
-                    <a class="nav-link" href="#References">Data</a>
+                    <a class="nav-link" href="#Links">Links</a>
+                    <a class="nav-link" href="/data">Data</a>
                 </div>
             </div>
         </div>
     </nav>
 
-
-
-    <!-- <nav class="navbar sticky-top navbar-light bg-light">
-        <div class="container-fluid">
-    <ul class="nav nav-tabs">
-
-        <li class="nav-item">
-            <a class="nav-link active" href="#Introduction">Introduction</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#Methods">Methods</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#Results" role="button" aria-haspopup="true" aria-expanded="false">Results</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#Timeline">Timeline</a>
-                <a class="dropdown-item" href="#Popularity">Popularity</a>
-                <a class="dropdown-item" href="#Map">Map</a>
-                <a class="dropdown-item" href="#TextBlob">Text Blob</a>
-                <a class="dropdown-item" href="#SampleTweet">Sample Tweet</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#DataTable">Data Table</a>
-            </div>
-
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#Discussion">Discussion</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="#References">References</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#About Me">About Me</a>
-        </li>
-    </ul>
-    </div></nav> -->
 
     <!-- ------------------------content------------------------------ -->
     <div class="container">
@@ -91,7 +52,7 @@
                 <h2>Introduction</h2>
                 <hr>
                 <p>
-                    This project analyzes tweets about Covid Vaccine
+                    This project analyzes tweets about Covid 19 Vaccines
                 </p>
             </div>
         </div>
@@ -126,14 +87,14 @@
 
                 </ol>
                 <p></p>
-
-                <p>Jansen Vaccine not Included in final list because it was approved on March 5th and data collection started on March 7th.
-                    <br> More thorough methodology can be found in the readme <a href="https://github.com/NikitaCase/covid-sentiments/blob/main/README.md" target="_blank">here.</a>
+                <br> More thorough methodology can be found in the readme <a href="https://github.com/NikitaCase/covid-sentiments/blob/main/README.md" target="_blank">here.</a>
                 </p>
             </div>
         </div>
 
+        <div class="spacer">
 
+        </div>
 
         <!-- ---------------------------------------------------------------- -->
         <!-- ------------------------RESULTS------------------------------ -->
@@ -142,23 +103,87 @@
                 <h2>Results</h2>
                 <hr>
 
-                <!-------- Timeline  -------->
-                <div class="row" id="Timeline">
-                    <div class="plot" id="p-time">
+
+
+                <!-------- Word Cloud -------->
+
+                <div class="row" id="Word-Cloud">
+                    <div class="col-md-12">
+                        <h3>Text Analysis</h3>
+                        <p>Word Clouds</p>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <!-- controls -->
+                    <div class="col-md-4">
+
+                        <div class="drop-down">
+
+                            <form>
+                                <div class="well"><br>
+                                    <label for="selCompanywc"><h5>Manufactirer</h5></label><br>
+                                    <select id="selCompanywc" name="company">
+                                    <option value="az">AstraZeneca</option>
+                                    <option value="mo">Moderna</option>
+                                    <option value="pf">Pfizer-BioNTech</option>
+                                    <option value="all">All</option>    
+                                </select>
+                                </div><br>
+                            </form>
+
+                        </div>
+
+                        <div class="drop-down">
+
+                            <form>
+                                <div class="well"><br>
+                                    <label for="selSentiment"><h5>Sentiment</h5></label><br>
+                                    <select id="selSentiment" name="sentiment">
+                                        <option value="pos">Positive</option>
+                                        <option value="neg">Negative</option>
+                                        <option value="all">All</option>
+                                    
+                                </select>
+                                </div><br>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Display area -->
+                    <div class="col-md-8" id='display-cloud'></div>
+
+                </div>
+                <div class="spacer"></div>
+
+                <!-------- Polarity by company -------->
+                <div class="row" id="Popularity">
+                    <h5></h5>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div id="scatter"></div>
+
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-------- Popularity  -------->
+                <div class="row" id="Popularity">
+
+                    <div class="col-md-12">
+                        <h5>Retweets and Like by Company Mentions</h5>
 
                     </div>
                 </div>
 
-
-                <!-------- Popularity  -------->
-                <div class="row" id="Popularity">
-                
-                   <div class="col-md-12">
-                       <h5>Popularity of Tweets and Retweets Company Mentions</h5>
-
-                   </div>
-                </div>
-                
                 <div class="row">
                     <div class="col-md-6" id='plot-retweets'>
 
@@ -168,87 +193,15 @@
                     </div>
                 </div>
 
-                
 
 
-                <!-------- Map  -------->
-                <div class="row" id="Map">
-                    <div class="plot" id="p-map">
 
-                    </div>
-
-                </div>
-
-                <!-------- Polarity by company -------->
-                <div class="row" id="Popularity">
-                    <label for="selCompanysc">Companies: </label>
-                    <select name="manufacturer" id="selCompanysc">
-                    <option value="az">AstraZeneca</option>
-                    <option value="mo">Moderna</option>
-                    <option value="pf">Pfizer-BioNTech</option>
-                </select>
-                    <div id="scatter">
-
-                    </div>
-
-                </div>
-
-
-                <!-------- Word Cloud -------->
-                <div class="row" id="Word-Cloud">
-                    <div class="col-md-12">
-                        <div class="row">
-
-
-                            <div class="col-md-3 drop-down">
-
-                                <form>
-                                    <div class="well"><br>
-                                        <label for="selCompanywc"><h5>Manufactirer</h5></label><br>
-                                        <select id="selCompanywc" name="company">
-                                    <option value="az">AstraZeneca</option>
-                                    <option value="mo">Moderna</option>
-                                    <option value="pf">Pfizer-BioNTech</option>
-                                    <option value="all">All</option>    
-                                </select>
-                                    </div><br>
-                                </form>
-
-                            </div>
-
-                            <div class="col-md-3 drop-down">
-
-                                <form>
-                                    <div class="well"><br>
-                                        <label for="selSentiment"><h5>Sentiment</h5></label><br>
-                                        <select id="selSentiment" name="sentiment">
-                                        <option value="pos">Positive</option>
-                                        <option value="neg">Negative</option>
-                                        <option value="all">All</option>
-                                    
-                                </select>
-                                    </div><br>
-                                </form>
-
-                            </div>
-                        </div>
-
-                        <div class="row" id='display-cloud'>
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <!-------- Sample Tweet  -------->
-                <div class="row" id="#SampleTweet">
-
-                </div>
-
-
+                <div class="spacer"></div>
                 <!-------- Data Table  -------->
                 <div class="row" id="#DataTable">
+                    <div class="col-md-12">
+                        Check out the <a href='data'>Data Tables</a>
+                    </div>
 
                 </div>
 
@@ -259,46 +212,23 @@
 
 
 
-        <!-- ---------------------------------------------------------------- -->
-        <!-- ------------------------DISCUSSION------------------------------ -->
-        <div class="row" id="Discussion">
-            <div class="col-md-12">
-                <h2>Discussion</h2>
-                <hr>
-                <p></p>
-
-            </div>
-        </div>
-
-
-
-        <!-- ---------------------------------------------------------------- -->
-        <!-- ------------------------CONCLUSION------------------------------ -->
-        <div class="row" id="Conclusion">
-            <div class="col-md-12">
-                <h2>Conclusion</h2>
-                <hr>
-                <p>Do I really need this section ? </p>
-            </div>
-        </div>
-
 
 
         <!-- ---------------------------------------------------------------- -->
         <!-- ------------------------REFERENCES------------------------------ -->
-        <div class="row" id="References">
+        <div class="row" id="Links">
             <div class="col-md-12">
-                <h2>References</h2>
+                <h2>Links</h2>
                 <hr>
                 <ul>
                     <li>
                         <a href="" target="_blank">Twitter API</a>
                     </li>
                     <li>
-                        <a href="" target="_blank">Statistics Canada</a>
+                        <a href="">Sample Data</a>
                     </li>
                     <li>
-                        <a href="" target="_blank"></a>
+                        <a href="" target="_blank">Github</a>
                     </li>
 
 
