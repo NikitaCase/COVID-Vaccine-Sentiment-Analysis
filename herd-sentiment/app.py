@@ -6,13 +6,12 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
-from config import conn2
 
 
 # ------------------------------------------------------------------------------
 # Create an engine for the database
 # ------------------------------------------------------------------------------
-engine = create_engine(conn2, echo=False)   
+engine = create_engine(DATABASE_URL, echo=False)   
 
 # Reflect Database into ORM classes
 Base = automap_base()
