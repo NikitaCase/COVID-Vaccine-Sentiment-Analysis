@@ -81,11 +81,11 @@ function updateCircleText(circle_text, new_x_scale, chosen_x_axis, new_y_scale, 
 function updateToolTip(chosen_x_axis, chosen_y_axis, chart, circles) {
     var x, y
 
-    if (chosen_x_axis == "polarity") { x = "polarity: " } else { x = "subjectivity: "; };
-    if (chosen_y_axis == "likes") { y = "likes: " } else { y = "retweets: " };
+    if (chosen_x_axis == "polarity") { x = "polarity (%): " } else if (chosen_x_axis == "age") { x = "Median Age: " } else { x = "subjectivity: "; };
+    if (chosen_y_axis == "likes") { y = "likes (%): " } else if (chosen_y_axis == "smokes") { y = "Smokes (%): " } else { y = "retweets (%): " };
 
     var tooltip = d3.tip().attr("class", "d3-tip").html(function(d) {
-        return `<div>
+        return `
                 ${x} ${d[chosen_x_axis]} <br>
                 ${y} ${d[chosen_y_axis]} </div>`;
     });
@@ -99,37 +99,28 @@ function updateToolTip(chosen_x_axis, chosen_y_axis, chart, circles) {
     return circles
 };
 
-
 var company = d3.select('#selCompany')
 
-function ChangeGraph() {
 
+function CompanyChange() {
 
-    url = '/manufacturer'
+    var user_company = company.node().value
+    if (user_company == 'az') { file = 'herd-sentiment/data/az.csv' } else if (user_company == 'mo') { file = 'herd-sentiment/data/mo.csv' } else { file = 'herd-sentiment/data/pf.csv' }
 
-    d3.json(url).then((man_data) => {
-        var company_data
-
-        if (user_company == 'az') { company_data = man_data.companies[1] } else if (user_company == 'mo') { company_data = man_data.companies[0] } else { company_data = man_data.companies[2] }
-
-        // x variables
-        company_data.polarity = +company_data.polarity
-        company_data.subjectivity = +company_data.subjectivity
-
-        // y variables
-        company_data.likes = +company_data.likes
-        company_data.retweets = +company_data.retweets
+    // Load CSV data
+    //----------------------------------------------------------------------------------
+    d3.csv(file).then((company_data) => {
 
         // Parse varibles from csv as integers
-        // company_data.forEach(function(data) {
-        //     //x variables 
-        //     data.polarity = +data.polarity
-        //     data.subjectivity = +data.subjectivity
+        company_data.forEach(function(data) {
+            //x variables 
+            data.polarity = +data.polarity
+            data.subjectivity = +data.subjectivity
 
-        //     // y variables
-        //     data.likes = +data.likes
-        //     data.retweets = +data.retweets
-        // });
+            // y variables
+            data.likes = +data.likes
+            data.retweets = +data.retweets
+        });
 
 
         // Create x and y scales
@@ -149,6 +140,7 @@ function ChangeGraph() {
 
         var y_axis = chart.append("g")
             .call(left_axis);
+
 
         // Append Circles
         var circles = chart.selectAll()
@@ -186,14 +178,14 @@ function ChangeGraph() {
             .attr("x", 0)
             .attr("y", 20)
             .attr("value", "polarity")
-            .text("In polarity (%)")
+            .text("Polarity")
             .attr("class", "active");
 
         var label_subjectivity = x_labels.append("text")
             .attr("x", 0)
             .attr("y", 60)
             .attr("value", "subjectivity")
-            .text("Household subjectivity (Median)")
+            .text("Subjectivity")
             .attr("class", "inactive");
 
 
@@ -207,7 +199,7 @@ function ChangeGraph() {
             .attr("x", -(height / 2))
             .attr("dy", "1em")
             .attr("value", "likes")
-            .text("Lacks likes (%)")
+            .text("Likes")
             .attr("class", "active");
 
         var label_retweets = y_labels.append("text")
@@ -215,7 +207,7 @@ function ChangeGraph() {
             .attr("x", -(height / 2))
             .attr("dy", "1em")
             .attr("value", "retweets")
-            .text("Obese (%)")
+            .text("Retweets")
             .attr("class", "inactive");
 
 
@@ -244,6 +236,7 @@ function ChangeGraph() {
                     if (chosen_x_axis == "polarity") {
                         label_polarity.classed("active", true).classed("inactive", false)
                         label_subjectivity.classed("inactive", true)
+
                     } else {
                         label_polarity.classed("inactive", true)
                         label_subjectivity.classed("active", true).classed("inactive", false)
@@ -287,6 +280,8 @@ function ChangeGraph() {
         console.log(error);
     });
 
-}
+};
 
-ChangeGraph();
+CompanyChange();
+
+company.on('change', CompanyChange());

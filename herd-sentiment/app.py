@@ -94,8 +94,34 @@ def manufacturer():
     az = session.query(tweets.retweets, tweets.likes, tweets.Subjectivity, tweets.Polarity, tweets.manufacturer).filter(tweets.manufacturer =='az').all()
     pf = session.query(tweets.retweets, tweets.likes, tweets.Subjectivity, tweets.Polarity, tweets.manufacturer).filter(tweets.manufacturer =='pf').all()
 
+    companies = {'companies': [
+        {
+            'name': 'moderna',
+            'retweets': [row[0] for row in mo],
+            'likes': [row[1] for row in mo],
+            'subjectivity': [row[2] for row in mo],
+            'polarity': [row[3] for row in mo],
+            'manufacturer': [row[4] for row in mo]
+        },
+        {
+            'name': 'astrazeneca',
+            'retweets': [row[0] for row in az],
+            'likes': [row[1] for row in az],
+            'subjectivity': [row[2] for row in az],
+            'polarity': [row[3] for row in az],
+            'manufacturer': [row[4] for row in az]
+        },    
+        {
+            'name': 'pfizer',
+            'retweets': [row[0] for row in pf],
+            'likes': [row[1] for row in pf],
+            'subjectivity': [row[2] for row in pf],
+            'polarity': [row[3] for row in pf],
+            'manufacturer': [row[4] for row in pf]
+        }
+    ]}
     session.close()
-    return jsonify(pop)
+    return jsonify(companies)
 
 if __name__ == "__main__":
     app.run()
