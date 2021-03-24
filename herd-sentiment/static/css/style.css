@@ -2,6 +2,23 @@
     height: 500px;
 }
 
+.drop-down,
+select {
+    background-color: #395b75;
+    color: #ffffff;
+}
+
+.drop-down {
+    border-radius: 1rem;
+    margin: 10px;
+}
+
+p {
+    color: #000000;
+    font-size: 16;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .aText {
     font-family: sans-serif;
     font-size: 16px;

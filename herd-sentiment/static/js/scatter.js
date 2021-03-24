@@ -8,9 +8,10 @@ var margin = { top: 20, right: 20, bottom: 100, left: 100 };
 var width = svg_width - margin.left - margin.right;
 var height = svg_height - margin.top - margin.bottom;
 
-// Defining svg and chart areas 
-var svg = d3.select("#scatter")
-    .append("svg")
+var scatter = d3.select("#scatter")
+    // Defining svg and chart areas 
+
+var svg = scatter.append("svg")
     .attr("width", svg_width)
     .attr("height", svg_height)
     .classed("chart", true);
@@ -18,8 +19,9 @@ var svg = d3.select("#scatter")
 var chart = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+
 // Initial Axes
-var chosen_x_axis = "polarity";
+var chosen_x_axis = "Polarity";
 var chosen_y_axis = "likes";
 
 
@@ -27,10 +29,11 @@ var chosen_y_axis = "likes";
 //----------------------------------------------------------------------------------
 function updateXscale(data, chosen_x_axis) {
     var x_scale = d3.scaleLinear()
-        .domain([d3.min(data, d => d[chosen_x_axis]) * 0.95, d3.max(data, d => d[chosen_x_axis]) * 1.05])
+        .domain([d3.min(data, d => d[chosen_x_axis]), d3.max(data, d => d[chosen_x_axis])])
         .range([0, width]);
     return x_scale;
 };
+// .domain([d3.min(data, d => d[chosen_x_axis]) * 0.95, d3.max(data, d => d[chosen_x_axis]) * 1.05])
 
 function updateYscale(data, chosen_y_axis) {
     var y_scale = d3.scaleLinear()
@@ -67,55 +70,22 @@ function updateCircles(circles, new_x_scale, chosen_x_axis, new_y_scale, chosen_
     return circles;
 };
 
-function updateCircleText(circle_text, new_x_scale, chosen_x_axis, new_y_scale, chosen_y_axis) {
-    circle_text.transition()
-        .duration(1000)
-        .attr("x", d => new_x_scale(d[chosen_x_axis]))
-        .attr("y", d => new_y_scale(d[chosen_y_axis]));
 
-    return circle_text;
-};
+var company = d3.select("#selCompanysc")
 
-// Update Tooltip based on chosen axes
+
+
+// Load CSV data
 //----------------------------------------------------------------------------------
-function updateToolTip(chosen_x_axis, chosen_y_axis, chart, circles) {
-    var x, y
+function PlotGraph(file) {
 
-    if (chosen_x_axis == "polarity") { x = "polarity (%): " } else if (chosen_x_axis == "age") { x = "Median Age: " } else { x = "subjectivity: "; };
-    if (chosen_y_axis == "likes") { y = "likes (%): " } else if (chosen_y_axis == "smokes") { y = "Smokes (%): " } else { y = "retweets (%): " };
-
-    var tooltip = d3.tip().attr("class", "d3-tip").html(function(d) {
-        return `
-                ${x} ${d[chosen_x_axis]} <br>
-                ${y} ${d[chosen_y_axis]} </div>`;
-    });
-
-    // Add the tooltips to the chart group
-    chart.call(tooltip)
-
-    // Add listener for mouseover and mouseout
-    circles.on("mouseover", function(d) { tooltip.show(d, this); })
-        .on("mouseout", function(d) { tooltip.hide(d, this) });
-    return circles
-};
-
-var company = d3.select('#selCompany')
-
-
-function CompanyChange() {
-
-    var user_company = company.node().value
-    if (user_company == 'az') { file = 'herd-sentiment/data/az.csv' } else if (user_company == 'mo') { file = 'herd-sentiment/data/mo.csv' } else { file = 'herd-sentiment/data/pf.csv' }
-
-    // Load CSV data
-    //----------------------------------------------------------------------------------
     d3.csv(file).then((company_data) => {
 
         // Parse varibles from csv as integers
         company_data.forEach(function(data) {
             //x variables 
-            data.polarity = +data.polarity
-            data.subjectivity = +data.subjectivity
+            data.Polarity = +data.Polarity
+            data.Subjectivity = +data.Subjectivity
 
             // y variables
             data.likes = +data.likes
@@ -149,42 +119,25 @@ function CompanyChange() {
             .append("circle")
             .attr("cx", d => x_scale(d[chosen_x_axis]))
             .attr("cy", d => y_scale(d[chosen_y_axis]))
-            .attr("r", 12)
+            .attr("r", 4)
             .classed("stateCircle", true);
-
-        // Append Circle Text
-        var circle_text = chart.selectAll()
-            .data(company_data)
-            .enter()
-            .append("text")
-            .text(d => d.abbr)
-            .attr("x", d => x_scale(d[chosen_x_axis]))
-            .attr("y", d => y_scale(d[chosen_y_axis]))
-            .attr("font-size", 10)
-            .attr("alignment-baseline", "central")
-            .classed("stateText", true);
-
-
-        // Append tooltips
-        var circles, circle_text = updateToolTip(chosen_x_axis, chosen_y_axis, circles, circle_text);
-
 
         // x axis labels
         var x_labels = chart.append("g")
             .attr("transform", `translate(${width / 2}, ${height + 20})`)
             .attr("class", "axis_label");
 
-        var label_polarity = x_labels.append("text")
+        var label_Polarity = x_labels.append("text")
             .attr("x", 0)
             .attr("y", 20)
-            .attr("value", "polarity")
+            .attr("value", "Polarity")
             .text("Polarity")
             .attr("class", "active");
 
-        var label_subjectivity = x_labels.append("text")
+        var label_Subjectivity = x_labels.append("text")
             .attr("x", 0)
             .attr("y", 60)
-            .attr("value", "subjectivity")
+            .attr("value", "Subjectivity")
             .text("Subjectivity")
             .attr("class", "inactive");
 
@@ -227,19 +180,15 @@ function CompanyChange() {
 
                     // Update circles and text positions
                     circles = updateCircles(circles, x_scale, chosen_x_axis, y_scale, chosen_y_axis);
-                    circle_text = updateCircleText(circle_text, x_scale, chosen_x_axis, y_scale, chosen_y_axis);
-
-                    // Update tooltips
-                    circles, circle_text = updateToolTip(chosen_x_axis, chosen_y_axis, circles, circle_text);
 
                     // make selected label bold
-                    if (chosen_x_axis == "polarity") {
-                        label_polarity.classed("active", true).classed("inactive", false)
-                        label_subjectivity.classed("inactive", true)
+                    if (chosen_x_axis == "Polarity") {
+                        label_Polarity.classed("active", true).classed("inactive", false)
+                        label_Subjectivity.classed("inactive", true)
 
                     } else {
-                        label_polarity.classed("inactive", true)
-                        label_subjectivity.classed("active", true).classed("inactive", false)
+                        label_Polarity.classed("inactive", true)
+                        label_Subjectivity.classed("active", true).classed("inactive", false)
                     };
                 }
             });
@@ -260,10 +209,7 @@ function CompanyChange() {
 
                     // update circles and text positions 
                     circles = updateCircles(circles, x_scale, chosen_x_axis, y_scale, chosen_y_axis);
-                    circle_text = updateCircleText(circle_text, x_scale, chosen_x_axis, y_scale, chosen_y_axis);
 
-                    // Update tooltips
-                    circles, circle_text = updateToolTip(chosen_x_axis, chosen_y_axis, circles, circle_text);
 
                     // make selected label bold
                     if (chosen_y_axis == "likes") {
@@ -282,6 +228,10 @@ function CompanyChange() {
 
 };
 
-CompanyChange();
+company.on('change', function() {
+    var user_company = company.property("value")
+    var file
+    if (user_company === 'az') { file = '/data/az.csv' } else if (user_company === 'mo') { file = '/data/mo.csv' } else { file = '/data/pf.csv' }
 
-company.on('change', CompanyChange());
+    PlotGraph(file)
+});

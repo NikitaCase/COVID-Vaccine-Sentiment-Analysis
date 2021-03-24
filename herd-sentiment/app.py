@@ -22,7 +22,7 @@ Base.prepare(engine, reflect=True)
 # ------------------------------------------------------------------------------
 # Flask Setup
 # ------------------------------------------------------------------------------
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='',static_folder='static')
 
 
 # Frontend Route
