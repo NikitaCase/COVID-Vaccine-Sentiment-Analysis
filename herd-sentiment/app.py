@@ -60,27 +60,59 @@ def map():
 
 # Popularity
 # ------------------------------------------------------------------------------
+# @app.route('/popularity')
+# def popularity():
+
+#     tweets = Base.classes.popularity
+#     session = Session(engine)
+    
+#     rows = session.query(tweets.manufacturer, tweets.Sentiment, tweets.retweets, tweets.likes).all()
+
+#     pop = {'popularity':[{
+#         'manufacturer': [col[0] for col in rows], 
+#         'sentiment': [col[1] for col in rows],
+#         'retweets': [col[2] for col in rows],
+#         'likes': [col[3] for col in rows]
+#     }]}
+
+#     session.close()
+#     return jsonify(pop)
+
+
+# Popularity
+# ------------------------------------------------------------------------------
 @app.route('/popularity')
 def popularity():
 
-    tweets = Base.classes.twt100
+    tweets = Base.classes.popularity
     session = Session(engine)
     
-    rows = session.query(tweets.id_str, tweets.created, tweets.Sentiment, tweets.retweet_count, tweets.tweet_favourite_count, tweets.location).all()
+    mo = session.query(tweets.retweets, tweets.likes, tweets.Sentiment).filter(tweets.manufacturer =='mo').all()
+    az = session.query(tweets.retweets, tweets.likes, tweets.Sentiment).filter(tweets.manufacturer =='az').all()
+    pf = session.query(tweets.retweets, tweets.likes, tweets.Sentiment).filter(tweets.manufacturer =='pf').all()
 
-    pop = {'popularity':[{
-        'id_str': [col[0] for col in rows], 
-        'created': [col[1] for col in rows], 
-        'sentiment': [col[2] for col in rows],
-        'retweets': [col[3] for col in rows],
-        'likes': [col[4] for col in rows], 
-        'location': [col[5] for col in rows]
-    }]}
-
+    companies = {'popularity': [
+        {
+            'name': 'Moderna',
+            'retweets': [row[0] for row in mo],
+            'likes': [row[1] for row in mo],
+            'sentiment': [row[2] for row in mo]
+        },
+        {
+            'name': 'AstraZeneca',
+            'retweets': [row[0] for row in az],
+            'likes': [row[1] for row in az],
+            'sentiment': [row[2] for row in az]
+        },    
+        {
+            'name': 'Pfizer-BioNTech',
+            'retweets': [row[0] for row in pf],
+            'likes': [row[1] for row in pf],
+            'sentiment': [row[2] for row in pf]
+        }
+    ]}
     session.close()
-    return jsonify(pop)
-
-
+    return jsonify(companies)
 
 # Manufacturer
 # ------------------------------------------------------------------------------
@@ -90,9 +122,9 @@ def manufacturer():
     tweets = Base.classes.manufacturer
     session = Session(engine)
     
-    mo = session.query(tweets.retweets, tweets.likes, tweets.Subjectivity, tweets.Polarity, tweets.manufacturer).filter(tweets.manufacturer =='mo').all()
-    az = session.query(tweets.retweets, tweets.likes, tweets.Subjectivity, tweets.Polarity, tweets.manufacturer).filter(tweets.manufacturer =='az').all()
-    pf = session.query(tweets.retweets, tweets.likes, tweets.Subjectivity, tweets.Polarity, tweets.manufacturer).filter(tweets.manufacturer =='pf').all()
+    mo = session.query(tweets.retweets, tweets.likes, tweets.Subjectivity, tweets.Polarity).filter(tweets.manufacturer =='mo').all()
+    az = session.query(tweets.retweets, tweets.likes, tweets.Subjectivity, tweets.Polarity).filter(tweets.manufacturer =='az').all()
+    pf = session.query(tweets.retweets, tweets.likes, tweets.Subjectivity, tweets.Polarity).filter(tweets.manufacturer =='pf').all()
 
     companies = {'companies': [
         {
@@ -100,24 +132,21 @@ def manufacturer():
             'retweets': [row[0] for row in mo],
             'likes': [row[1] for row in mo],
             'subjectivity': [row[2] for row in mo],
-            'polarity': [row[3] for row in mo],
-            'manufacturer': [row[4] for row in mo]
+            'polarity': [row[3] for row in mo]
         },
         {
             'name': 'astrazeneca',
             'retweets': [row[0] for row in az],
             'likes': [row[1] for row in az],
             'subjectivity': [row[2] for row in az],
-            'polarity': [row[3] for row in az],
-            'manufacturer': [row[4] for row in az]
+            'polarity': [row[3] for row in az]
         },    
         {
             'name': 'pfizer',
             'retweets': [row[0] for row in pf],
             'likes': [row[1] for row in pf],
             'subjectivity': [row[2] for row in pf],
-            'polarity': [row[3] for row in pf],
-            'manufacturer': [row[4] for row in pf]
+            'polarity': [row[3] for row in pf]
         }
     ]}
     session.close()
