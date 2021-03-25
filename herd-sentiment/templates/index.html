@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="#Introduction">Intro</a>
-                    <a class="nav-link" href="#Results">Results</a>
+                    <a class="nav-link" href="#Results">Visualizations</a>
                     <a class="nav-link" href="#Links">Links</a>
                     <a class="nav-link" href="/data">Data</a>
                 </div>
@@ -53,7 +53,7 @@
                 <hr>
                 <p>
                     This project analyzes tweets about Covid 19 Vaccines. <br> Tweets were gathered from the Twitter API which mentioned: Covid Vaccine, Covid-19 Vaccine, Moderna, Pfizer, Pfizer-BioNTech, AstraZeneca, Astra Zeneca<br> Tweets were cleaned
-                    and analyzed for polarity and subjectivity
+                    and analyzed for polarity and subjectivity. Polarity is a measure of how negative or positive the text is (measured on a scale of -1 to +1) while subjectivity measures subjectiveness (on a scale of 0 to 1)
                     <br><br> A more thorough methodology can be found in the readme <a href="https://github.com/NikitaCase/covid-vaccine-sentiments" target="_blank">here.</a>
 
                 </p>
@@ -65,7 +65,7 @@
         <!-- ------------------------RESULTS------------------------------ -->
         <div class="row" id="Results">
             <div class="col-md-12"><br>
-                <h1>Results</h1>
+                <h1>Visualizations</h1>
                 <hr>
 
 
@@ -134,13 +134,17 @@
 
                     </div>
                 </div> -->
-            <div class="row">
-                <div class="col-md-12">
-                    
-                </div>
-            </div>
                 <div class="row">
-                    <div class="col-md-12" id='display-violins'>
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-success" id='Radio1'>Polarity</button>
+                        <button type="button" class="btn btn-info" id='Radio2'>Subjectivity</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id='display-violins' class='actived'>
+
+                    </div>
+                    <div class="col-md-12" id='display-violins2' class='hided'>
 
                     </div>
                 </div>

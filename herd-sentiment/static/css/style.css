@@ -10,6 +10,14 @@ h1 {
     /* color: #fffaba; */
 }
 
+.actived {
+    opacity: 1;
+}
+
+.hided {
+    display: none;
+}
+
 h3 {
     color: #f7a332;
 }
