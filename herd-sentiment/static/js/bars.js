@@ -102,7 +102,7 @@ function PlotBars() {
 
 
 
-function PlotBars() {
+function PlotBoxes() {
     d3.json('/manufacturer').then((data) => {
 
         var p_mo = data.companies[0]['polarity']
@@ -154,7 +154,7 @@ function PlotViolins() {
         var tracev1 = {
             type: 'violin',
             x: v_mo,
-            y: 'Moderna',
+            y0: 'Moderna',
             points: 'none',
             box: {
                 visible: true
@@ -162,6 +162,8 @@ function PlotViolins() {
             line: {
                 color: 'green',
             },
+            showlegend: true,
+            name: 'Moderna',
             meanline: {
                 visible: true
             },
@@ -177,7 +179,8 @@ function PlotViolins() {
         var tracev2 = {
             type: 'violin',
             x: v_az,
-            y: 'AstraZeneca',
+            y0: 'AstraZeneca',
+            name: 'Astrazeneca',
             points: 'none',
             box: {
                 visible: true
@@ -188,6 +191,7 @@ function PlotViolins() {
             meanline: {
                 visible: true
             },
+            showlegend: true,
             marker: {
                 line: {
                     width: 2,
@@ -200,7 +204,8 @@ function PlotViolins() {
         var tracev3 = {
             type: 'violin',
             x: v_pf,
-            y: 'Pfizer',
+            y0: 'Pfizer',
+            name: 'Pfizer-BioNTech',
             points: 'none',
             box: {
                 visible: true
@@ -211,6 +216,7 @@ function PlotViolins() {
             meanline: {
                 visible: true
             },
+            showlegend: true,
             marker: {
                 line: {
                     width: 2,
@@ -222,7 +228,7 @@ function PlotViolins() {
         var datav = [tracev1, tracev2, tracev3]
 
         var layoutv = {
-            title: "Tweets by Polarity",
+            title: "Tweet Polarity by Manufacturer",
             yaxis: {
                 zeroline: false
             }
@@ -232,7 +238,5 @@ function PlotViolins() {
     });
 
 }
-
-
 
 PlotViolins();
