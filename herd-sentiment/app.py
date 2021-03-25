@@ -12,7 +12,8 @@ DB = os.environ.get('DATABASE_URL')
 # ------------------------------------------------------------------------------
 # Create an engine for the database
 # ------------------------------------------------------------------------------
-engine = create_engine(DB, echo=False)   
+engine = create_engine(DB, echo=False)
+
 
 # Reflect Database into ORM classes
 Base = automap_base()
@@ -25,60 +26,49 @@ Base.prepare(engine, reflect=True)
 app = Flask(__name__, static_url_path='',static_folder='static')
 
 
-# Frontend Route
+# Frontend Routes
 # ------------------------------------------------------------------------------
 @app.route("/")
 def home():
     return render_template("index.html")
 
 
+@app.route("/data")
+def data():
+    return render_template("data.html")
+
+
 # Backend Routes:
 
-# Map
+# Tweet Samples
 # ------------------------------------------------------------------------------
-@app.route('/map')
-def map():
+@app.route('/sample')
+def sample():
 
-    tweets = Base.classes.twt100
+    tweets = Base.classes.sample
     session = Session(engine)
     
-    rows = session.query(tweets.id_str, tweets.created, tweets.Sentiment, tweets.location, tweets.geo_enabled, tweets.geo, tweets.coords).all()
+    rows = session.query(tweets.id_str, tweets.text, tweets.screen_name,tweets.retweet_count,tweets.tweet_favourite_count,tweets.Subjectivity,tweets.Polarity,tweets.Sentiment,tweets.manufacturer).all()
 
-    lined = {'location':[{
-        'id_str': [col[0] for col in rows], 
-        'created': [col[1] for col in rows], 
-        'sentiment': [col[2] for col in rows],
-        'location': [col[3] for col in rows],
-        'geo_enabled': [col[4] for col in rows],
-        'geo': [col[5] for col in rows],
-        'coords': [col[6] for col in rows]
-    }]}
-
-    session.close()
-    return jsonify(lined)
-
-
-# Popularity
-# ------------------------------------------------------------------------------
-# @app.route('/popularity')
-# def popularity():
-
-#     tweets = Base.classes.popularity
-#     session = Session(engine)
+    twt = []
     
-#     rows = session.query(tweets.manufacturer, tweets.Sentiment, tweets.retweets, tweets.likes).all()
+    for col in rows:
+        twt.append({
+            'id_str': col[0],
+            'text': col[1],
+            'screen_name': col[2],
+            'retweets': col[3],
+            'likes': col[4],
+            'subjectivity': col[5],
+            'polarity': col[6],
+            'sentiment': col[7],
+            'manufacturer': col[8],
+        })
+        
+    session.close()
+    return jsonify(twt)
 
-#     pop = {'popularity':[{
-#         'manufacturer': [col[0] for col in rows], 
-#         'sentiment': [col[1] for col in rows],
-#         'retweets': [col[2] for col in rows],
-#         'likes': [col[3] for col in rows]
-#     }]}
-
-#     session.close()
-#     return jsonify(pop)
-
-
+ 
 # Popularity
 # ------------------------------------------------------------------------------
 @app.route('/popularity')

@@ -135,7 +135,7 @@ d3.csv('/data/polarity.csv').then((polarity_data) => {
         .attr("y", 40)
         .attr("value", "Polarity")
         .text("Polarity (Rounded to 1 decimal place)")
-        .attr("class", "inactive");
+        .attr("class", "active");
 
     // y axis labels    
     var y_labels = chart.append("g")

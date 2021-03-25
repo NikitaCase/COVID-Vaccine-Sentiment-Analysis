@@ -1,3 +1,23 @@
+body {
+    min-height: 100vh;
+    background-color: #08183e;
+    background: linear-gradient(to left top, #482677, #1acedf);
+    align-items: center;
+}
+
+h1 {
+    color: #481a6c;
+    /* color: #fffaba; */
+}
+
+h3 {
+    color: #f7a332;
+}
+
+h5 {
+    color: #f7a332;
+}
+
 .plot {
     height: 500px;
 }
@@ -6,19 +26,31 @@
     height: 25px;
 }
 
+.container {
+    border-radius: 1rem;
+    background-color: #f8f9fa;
+}
+
+.content {
+    border-radius: 1rem;
+    background-color: #f8f9fa;
+    padding: 15px;
+}
+
 .drop-down,
 select {
-    background-color: #395b75;
-    color: #ffffff;
+    background-color: #f8f9fa;
+    color: #220c33;
 }
 
 .drop-down {
     border-radius: 1rem;
-    margin: 10px;
+    padding: 15px;
 }
 
-p {
-    color: #000000;
+p,
+li {
+    color: #220c33;
     font-size: 16;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -48,18 +80,18 @@ p {
     cursor: pointer;
 }
 
+#Results {
+    background-color: #ffffff;
+}
 
-/* font size dependent on radius, see app.js */
-
-.stateText {
-    font-family: sans-serif;
-    fill: #fff;
-    text-anchor: middle;
+#Popularity,
+#scatter {
+    background-color: #f8f9fa;
 }
 
 .stateCircle {
-    fill: #89bdd3;
-    stroke: #e3e3e3;
+    fill: #497b8c;
+    stroke: #29454e;
 }
 
 .chart {
@@ -77,11 +109,6 @@ p {
     text-transform: capitalize;
     background: rgba(0, 0, 0, 0.8);
     border-radius: 4px;
-}
-
-.circleText {
-    font-size: 3px;
-    text-anchor: middle;
 }
 
 .axis_label {

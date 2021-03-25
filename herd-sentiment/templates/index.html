@@ -12,7 +12,7 @@
 
 
 
-    <title>Covid Vaccine Sentiment</title>
+    <title>Covid Vaccine Sentiments</title>
 
 </head>
 
@@ -39,7 +39,7 @@
         </div>
     </nav>
 
-
+    <br>
     <!-- ------------------------content------------------------------ -->
     <div class="container">
 
@@ -48,59 +48,24 @@
         <!-- ------------------------INTRO------------------------------ -->
 
         <div class="row" id="Introduction">
-            <div class="col-md-12">
-                <h2>Introduction</h2>
+            <div class="col-md-12"><br>
+                <h1>Introduction</h1>
                 <hr>
                 <p>
-                    This project analyzes tweets about Covid 19 Vaccines
+                    This project analyzes tweets about Covid 19 Vaccines. <br> Tweets were gathered from the Twitter API which mentioned: Covid Vaccine, Covid-19 Vaccine, Moderna, Pfizer, Pfizer-BioNTech, AstraZeneca, Astra Zeneca<br> Tweets were cleaned
+                    and analyzed for polarity and subjectivity
+                    <br><br> A more thorough methodology can be found in the readme <a href="https://github.com/NikitaCase/covid-vaccine-sentiments" target="_blank">here.</a>
+
                 </p>
-            </div>
+            </div><br>
         </div>
 
-
-        <!-- ---------------------------------------------------------------- -->
-        <!-- ------------------------METHODS------------------------------ -->
-
-        <div class="row" id="Methods">
-            <div class="col-md-12">
-                <h2>Methods</h2>
-                <hr>
-
-                <ol>
-                    <li>
-                        API keys were obtained from Twitter
-                    </li>
-                    <li>
-                        API was accessed using Python and Tweepy to collect all tweets which mentioned the following:<br> Covid Vaccine, Covid-19 Vaccine, Moderna, Pfizer, Pfizer-BioNTech, AstraZeneca, Astra Zeneca<br> This data excluded retweets.
-                    </li>
-                    <li>
-                        Tweets were cleaned and sorted using Pandas and exported to csvs and an SQL database
-                    </li>
-                    <li>
-                        Tweets were analysed for sentiment using someting or the other
-                    </li>
-                    <li>
-                        Aggregation was performed on the analyzed tweets to create visualizations
-
-                    </li>
-
-
-                </ol>
-                <p></p>
-                <br> More thorough methodology can be found in the readme <a href="https://github.com/NikitaCase/covid-sentiments/blob/main/README.md" target="_blank">here.</a>
-                </p>
-            </div>
-        </div>
-
-        <div class="spacer">
-
-        </div>
 
         <!-- ---------------------------------------------------------------- -->
         <!-- ------------------------RESULTS------------------------------ -->
         <div class="row" id="Results">
-            <div class="col-md-12">
-                <h2>Results</h2>
+            <div class="col-md-12"><br>
+                <h1>Results</h1>
                 <hr>
 
 
@@ -124,7 +89,7 @@
 
                             <form>
                                 <div class="well"><br>
-                                    <label for="selCompanywc"><h5>Manufactirer</h5></label><br>
+                                    <label for="selCompanywc"><h5>   Manufacturer</h5></label><br>
                                     <select id="selCompanywc" name="company">
                                     <option value="az">AstraZeneca</option>
                                     <option value="mo">Moderna</option>
@@ -134,13 +99,11 @@
                                 </div><br>
                             </form>
 
-                        </div>
 
-                        <div class="drop-down">
 
                             <form>
                                 <div class="well"><br>
-                                    <label for="selSentiment"><h5>Sentiment</h5></label><br>
+                                    <label for="selSentiment"><h5>   Sentiment</h5></label><br>
                                     <select id="selSentiment" name="sentiment">
                                         <option value="pos">Positive</option>
                                         <option value="neg">Negative</option>
@@ -155,14 +118,14 @@
                     </div>
 
                     <!-- Display area -->
-                    <div class="col-md-8" id='display-cloud'></div>
+                    <div class="col-md-8" id='display-cloud'></div><br><br>
 
-                </div>
-                <div class="spacer"></div>
+                </div><br>
 
-                <!-------- Polarity by company -------->
-                <div class="row" id="Popularity">
-                    <h5></h5>
+
+                <!-------- Scatter -------->
+                <div class="row" id="Popularity"><br><br>
+                    <h3>Percentage Tweets by Polarity</h3>
 
 
                 </div>
@@ -173,37 +136,32 @@
 
                     </div>
                 </div>
-                <div class="spacer"></div>
 
-                <!-------- Popularity  -------->
-                <div class="row" id="Popularity">
 
-                    <div class="col-md-12">
-                        <h5>Retweets and Like by Company Mentions</h5>
-
-                    </div>
-                </div>
-
+                <!-------- Bars  -------->
                 <div class="row">
-                    <div class="col-md-6" id='plot-retweets'>
+                    <div class="col-md-12"><br>
+                        <div class="row" id="Retweets">
 
-                    </div>
-                    <div class="col-md-6" id='plot-likes'>
+                            <div class="col-md-12">
+                                <h3>Retweets and Likes by Company Mentions</h3><br>
 
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6" id='plot-retweets'>
+
+                            </div>
+                            <div class="col-md-6" id='plot-likes'>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
 
 
 
-
-                <div class="spacer"></div>
-                <!-------- Data Table  -------->
-                <div class="row" id="#DataTable">
-                    <div class="col-md-12">
-                        Check out the <a href='data'>Data Tables</a>
-                    </div>
-
-                </div>
 
 
                 <!-- end block  -->
@@ -217,24 +175,23 @@
         <!-- ---------------------------------------------------------------- -->
         <!-- ------------------------REFERENCES------------------------------ -->
         <div class="row" id="Links">
-            <div class="col-md-12">
-                <h2>Links</h2>
+            <div class="col-md-12"><br>
+                <h1>Links</h1>
                 <hr>
                 <ul>
                     <li>
-                        <a href="" target="_blank">Twitter API</a>
+                        <a href="/data">Sample Data</a>
                     </li>
                     <li>
-                        <a href="">Sample Data</a>
+                        <a href="https://github.com/NikitaCase/covid-vaccine-sentiments" target="_blank">Project Github</a>
                     </li>
                     <li>
-                        <a href="" target="_blank">Github</a>
+                        <a href="https://developer.twitter.com/en/docs" target="_blank">Twitter API Docs</a>
                     </li>
-
 
                 </ul>
 
-            </div>
+            </div><br>
         </div>
 
 

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- Other Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+
+
+
+    <title>Covid Vaccine Sentiments</title>
+
+</head>
+
+<body>
+
+
+    <!-- ---------------------------------------------------------------- -->
+    <!----------------------------- NAVIGATION ---------------------------->
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="/#Introduction">Intro</a>
+                    <a class="nav-link" href="/#Results">Results</a>
+                    <a class="nav-link" href="/#Links">Links</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+    <!-- ------------------------content------------------------------ -->
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Sample Data</h1>
+                <hr>
+                <p>Browse a sample of the tweets by selecting a manufacturer and sentiment</p>
+
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <form>
+                    <div class="form-group">
+                        <ul class="list-group" id="filters">
+                            <br>
+                            <li class="filter list-group-item">
+                                <label for="selComp"><h5>   Manufacturer</h5></label><br>
+                                <select id="selComp" name="company">
+                    <option value="az">AstraZeneca</option>
+                    <option value="mo">Moderna</option>
+                    <option value="pf">Pfizer-BioNTech</option>
+                    <option value="0">General Tweets</option>    
+                </select>
+
+                            </li>
+                            <br>
+                            <li class="filter list-group-item">
+                                <label for="selSent"><h5>   Sentiment</h5></label><br>
+                                <select id="selSent" name="sentiment">
+                        <option value="positive">Positive</option>
+                        <option value="negative">Negative</option>
+                        <option value="neutral">Neutral</option>
+                    
+                </select>
+                            </li>
+                            <br>
+
+                        </ul>
+                    </div>
+                    <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+                    <button id="clear-btn" type="button" class="btn btn-default">Clear Table</button>
+                </form>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="table-area" class="">
+                    <table id="ufo-table" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="table-head">id_str</th>
+                                <th class="table-head">Likes</th>
+                                <th class="table-head">Manufacturer</th>
+                                <th class="table-head">Polarity</th>
+                                <th class="table-head">Retweets</th>
+                                <th class="table-head">Screen Name</th>
+
+                                <th class="table-head">Sentiment</th>
+
+
+
+                                <th class="table-head">Subjectivity</th>
+                                <th class="table-head">Text</th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    This table contains a 1% random sample of the data used in the analysis
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ------------------------- DEPENDENCIES ----------------------- -->
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <!-- D3  -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="{{ url_for('static', filename='js/table.js') }}"></script>
+</body>
+
+</html>
