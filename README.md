@@ -179,13 +179,13 @@ def popularity():
 ### Example Vizualizations
 
 Most Popular Words
-![Popular Words](herd-sentiments/static/images/could-vac.png)
+![Popular Words](herd-sentiment/static/images/could-vac.png)
 
 Polarity by Company Mention 
 ![Polarity by Company](herd-sentiment/static/images/polarity-violin.png)
 
 Likes and Retweets by Sentiment
-![Likes and Retweets by Sentiment](herd-sentiments/static/images/popularity.png)
+![Likes and Retweets by Sentiment](herd-sentiment/static/images/popularity.png)
 
 
 
