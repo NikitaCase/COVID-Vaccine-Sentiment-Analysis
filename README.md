@@ -1,16 +1,22 @@
 # COVID Vaccine Sentiments 
-# Proposal 
 
 ### By: Nikita Case
 
 
 ### Goal
-The goal of this project is to perform sentiment analysis of tweets relating to the COVID-19 Vaccines. These sentiments will be used along with geographical data to highlight areas of positive and negative sentiment across Canada. Retweets and likes will be analyzed to compare the popularity of positive vs negative tweets between Canda and the USA. Other countries will be colourised based on their overall polarity scores (degree of positivity in the scores). 
 
-This data will be stored to an online database and deployed as a Flask app using Amazon Web Services (AWS). This will allow users to interact with visualizations that show:
-* Where tweets are comming from
+This is a Natural Language Processing project which focuses on sentiment analysis of tweets relating to the COVID-19 Vaccines. 
+
+Tweets are analyzed according the the drug company that is mentioned in the tweet(if any) to compare the overall sentiment in tweets about Pfizer-BioNTech, Moderna and AstraZeneca. 
+
+These sentiments will be used along with geographical data to highlight areas of positive and negative sentiment across Canada. Retweets and likes will be analyzed to compare the popularity of positive vs negative tweets between Canada and the USA
+
+This data will be stored to an online database and deployed as a Flask app using Heroku. The current Heroku app version can be viewed 
+[here](https://covid-sentiments.herokuapp.com/). This will allow you to interact with visualizations that show:
+* Which Company is being mentioned 
 * Tweet sentiments (positive, negative and neutral)
 * Popularity (based on likes and retweets) 
+* Where tweets are comming from (as soon as I can find a free service to geoparse what users enter in the location data - any suggestions, feel free to message me)
 
 
 ### Hypotheses
@@ -19,7 +25,7 @@ There will be more tweets with a positive than negative sentiment.
 
 Positive tweets will be liked and retweeted more often than negative tweets.
 
-Canada will have a higher percentage of positive to negative tweets than the USA
+Positive tweets will outweigh negative tweets regardless of company mention. 
 
 
 ### How I plan to build this
@@ -28,7 +34,7 @@ Canada will have a higher percentage of positive to negative tweets than the USA
 Twitter API version 1.1
 
 ##### Storage and Deployment
-Amazon Web Services
+Heroku
 
 ##### Technology and Languages
 * Python
@@ -39,7 +45,7 @@ Amazon Web Services
 * SQLAlchemy - for CRUD
 * Flask
 * Flask SQLAlchemy - to load cleaned and analyzed data into flask app using various API routes
-* JavaScript
+* JavaScript and D3.js
 * Plotly.js - To visualize positive vs negative tweet popularity acorss time and country
 * Leaflet.js and Mapbox - To create interactive maps for data visualization
 * HTML5 
@@ -170,11 +176,28 @@ def popularity():
 ```
 
 
+### Example Vizualizations
+
+Most Popular Words
+![Popular Words](herd-sentiments/static/images/could-vac.png)
+
+Polarity by Company Mention 
+![Polarity by Company](herd-sentiment/static/images/polarity-violin.png)
+
+Likes and Retweets by Sentiment
+![Likes and Retweets by Sentiment](herd-sentiments/static/images/popularity.png)
+
+
+
 ### Links
+
+[Covid Sentiments Heroku App](https://covid-sentiments.herokuapp.com/)
 
 [Twtter API Documentation](https://developer.twitter.com/en/docs/twitter-api)
 
 [Tweepy Documentation](https://docs.tweepy.org/en/latest/)
+
+
 
 
 :smile_cat: Nikita Case
