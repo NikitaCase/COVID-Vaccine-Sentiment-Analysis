@@ -1,4 +1,4 @@
-# COVID Vaccine Sentiments 
+# COVID Vaccine Sentiment Analysis
 
 ### By: Nikita Case
 
