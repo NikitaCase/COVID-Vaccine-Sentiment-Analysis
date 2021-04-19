@@ -193,7 +193,7 @@ Likes and Retweets by Sentiment
 
 [Covid Sentiments Heroku App](https://covid-sentiments.herokuapp.com/)
 
-[Presentation](herd-sentiment/Sentiment Analysis.pdf)
+[Presentation](herd-sentiment/SentimentAnalysis.pdf)
 
 [Twtter API Documentation](https://developer.twitter.com/en/docs/twitter-api)
 
