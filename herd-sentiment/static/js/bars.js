@@ -217,17 +217,15 @@ pselect.on('click', function() {
 })
 
 
-sselect.on('click', ShowSubj())
+sselect.on('click', PlotViolinsSubjectivity())
 
-function ShowSubj() {
-    PlotViolinsSubjectivity();
-
+sselect.on('click', function() {
     disp_subj.classed('hidend', false)
     disp_subj.classed('actived', true)
     disp_pol.classed('actived', false)
     disp_pol.classed('hidend', true)
 
-}
+})
 
 // pselect.on('click', function() {
 //     disp_pol.style('opacity', 1);
