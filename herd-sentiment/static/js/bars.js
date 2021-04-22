@@ -2,7 +2,7 @@
 
 var company_select = d3.select("#selCompanybg")
 var dip = d3.select('#display-violins')
-var dip2 = d3.select('#display-violins')
+var dip2 = d3.select('#display-violins2')
 
 
 PlotBars();
@@ -353,27 +353,27 @@ PlotViolins2();
 var pselect = d3.select('#Radio1')
 var sselect = d3.select('#Radio2')
 
-// pselect.on('click', function() {
-//     dip2.classed('actived', false)
-//     dip2.classed('hided', true)
-//     dip.classed('hided', false)
-//     dip.classed('actived', true)
-// })
-
-
-// sselect.on('click', function() {
-//     dip2.classed('hided', false)
-//     dip2.classed('actived', true)
-//     dip.classed('actived', false)
-//     dip.classed('hided', true)
-// })
-
 pselect.on('click', function() {
-    dip.style.display = 'inline'
-    dip2.style.display = 'none'
-});
+    dip2.classed('actived', false)
+    dip2.classed('hided', true)
+    dip.classed('hided', false)
+    dip.classed('actived', true)
+})
+
 
 sselect.on('click', function() {
-    dip2.style.display = 'inline'
-    dip.style.display = 'none'
-});
+    dip2.classed('hided', false)
+    dip2.classed('actived', true)
+    dip.classed('actived', false)
+    dip.classed('hided', true)
+})
+
+// pselect.on('click', function() {
+//     dip.style('opacity', 1);
+//     dip2.style('opacity', 0);
+// });
+
+// sselect.on('click', function() {
+//     dip.style('opacity', 0);
+//     dip2.style('opacity', 1);
+// });
