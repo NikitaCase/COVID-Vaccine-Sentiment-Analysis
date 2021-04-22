@@ -68,15 +68,16 @@ form.on("change", FilterTweets);
 button_clear.on("click", clear_table);
 
 // display tweets on page load
-function DisplayTweets(){
+function DisplayTweets() {
     d3.json('/sample').then((data) => {
-        data.forEach((row) =>{
-            
+        data.forEach((row) => {
+            var tbody = d3.select('tbody')
             var tr = tbody.append("tr");
 
             Object.entries(row).forEach(([key, value]) => {
                 var td = tr.append("td")
                 td.text(value)
+            })
         })
     })
 };
