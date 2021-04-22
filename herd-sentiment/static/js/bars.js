@@ -1,8 +1,243 @@
 // Select page sections
 
 var company_select = d3.select("#selCompanybg")
-var dip = d3.select('#display-violins')
-var dip2 = d3.select('#display-violins2')
+var disp_pol = d3.select('#display-violins')
+var disp_subj = d3.select('#display-violins2')
+
+// Plot the Polarity violins
+function PlotViolinsPolarity() {
+    d3.json('/manufacturer').then((data) => {
+
+
+        var v_mo = data.companies[0]['polarity']
+        var v_az = data.companies[1]['polarity']
+        var v_pf = data.companies[2]['polarity']
+
+
+        var tracev1 = {
+            type: 'violin',
+            x: v_mo,
+            y0: 'Moderna',
+            points: 'none',
+            box: {
+                visible: true
+            },
+            line: {
+                color: 'green',
+            },
+            showlegend: true,
+            name: 'Moderna',
+            meanline: {
+                visible: true
+            },
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+        }
+
+        var tracev2 = {
+            type: 'violin',
+            x: v_az,
+            y0: 'AstraZeneca',
+            name: 'Astrazeneca',
+            points: 'none',
+            box: {
+                visible: true
+            },
+            line: {
+                color: 'red',
+            },
+            meanline: {
+                visible: true
+            },
+            showlegend: true,
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+        }
+
+        var tracev3 = {
+            type: 'violin',
+            x: v_pf,
+            y0: 'Pfizer',
+            name: 'Pfizer-BioNTech',
+            points: 'none',
+            box: {
+                visible: true
+            },
+            line: {
+                color: 'orange',
+            },
+            meanline: {
+                visible: true
+            },
+            showlegend: true,
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+        }
+        var datav = [tracev1, tracev2, tracev3]
+
+        var layoutv = {
+            title: "Tweet Polarity by Manufacturer",
+            yaxis: {
+                zeroline: false
+            },
+            width: 900,
+            height: 600
+        }
+
+        Plotly.newPlot('display-violins', datav, layoutv);
+    });
+
+}
+
+// Plots Subjectivity Violins
+function PlotViolinsSubjectivity() {
+    d3.json('/manufacturer').then((data) => {
+
+        var v_mo = data.companies[0]['subjectivity']
+        var v_az = data.companies[1]['subjectivity']
+        var v_pf = data.companies[2]['subjectivity']
+
+
+        var tracev1 = {
+            type: 'violin',
+            x: v_mo,
+            y0: 'Moderna',
+            points: 'none',
+            box: {
+                visible: true
+            },
+            line: {
+                color: 'green',
+            },
+            showlegend: true,
+            name: 'Moderna',
+            meanline: {
+                visible: true
+            },
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+        }
+
+        var tracev2 = {
+            type: 'violin',
+            x: v_az,
+            y0: 'AstraZeneca',
+            name: 'Astrazeneca',
+            points: 'none',
+            box: {
+                visible: true
+            },
+            line: {
+                color: 'red',
+            },
+            meanline: {
+                visible: true
+            },
+            showlegend: true,
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+        }
+
+        var tracev3 = {
+            type: 'violin',
+            x: v_pf,
+            y0: 'Pfizer',
+            name: 'Pfizer-BioNTech',
+            points: 'none',
+            box: {
+                visible: true
+            },
+            line: {
+                color: 'orange',
+            },
+            meanline: {
+                visible: true
+            },
+            showlegend: true,
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+        }
+        var datav = [tracev1, tracev2, tracev3]
+
+        var layoutv = {
+            title: "Tweet Subjectivity by Manufacturer",
+            yaxis: {
+                zeroline: false
+            },
+            width: 900,
+            height: 600
+        }
+
+        Plotly.newPlot('display-violins2', datav, layoutv);
+    });
+
+}
+
+PlotViolinsPolarity();
+
+var pselect = d3.select('#Radio1')
+var sselect = d3.select('#Radio2')
+
+// Show Polarity violin on click of polarity button 
+pselect.on('click', function() {
+    disp_subj.classed('actived', false)
+    disp_subj.classed('hidend', true)
+    disp_pol.classed('hidend', false)
+    disp_pol.classed('actived', true)
+})
+
+
+sselect.on('click', ShowSubj())
+
+function ShowSubj() {
+    PlotViolinsSubjectivity();
+
+    disp_subj.classed('hidend', false)
+    disp_subj.classed('actived', true)
+    disp_pol.classed('actived', false)
+    disp_pol.classed('hidend', true)
+
+}
+
+// pselect.on('click', function() {
+//     disp_pol.style('opacity', 1);
+//     disp_subj.style('opacity', 0);
+// });
+
+// sselect.on('click', function() {
+//     disp_pol.style('opacity', 0);
+//     disp_subj.style('opacity', 1);
+// });
 
 
 PlotBars();
@@ -106,274 +341,3 @@ function PlotBars() {
         Plotly.newPlot('plot-likes', data, layout, config);
     })
 }
-
-
-
-// function PlotBoxes() {
-//     d3.json('/manufacturer').then((data) => {
-
-//         var p_mo = data.companies[0]['polarity']
-//         var p_az = data.companies[1]['polarity']
-//         var p_pf = data.companies[2]['polarity']
-
-//         var trace1 = {
-//             x: p_mo,
-//             type: 'box',
-//             name: 'Moderna'
-//         };
-
-//         var trace2 = {
-//             x: p_az,
-//             type: 'box',
-//             name: 'AstraZeneca'
-//         };
-
-//         var trace3 = {
-//             x: p_pf,
-//             type: 'box',
-//             name: 'Pfizer-BioNTech'
-//         };
-
-
-//         var datab = [trace1, trace2, trace3];
-
-//         var layoutb = {
-//             title: 'Tweet Polarity by Vaccine Manufacturer'
-//         };
-
-//         Plotly.newPlot('display-boxes', datab, layoutb);
-
-//     })
-// }
-
-
-PlotBars();
-
-
-function PlotViolins() {
-    d3.json('/manufacturer').then((data) => {
-
-
-        var v_mo = data.companies[0]['polarity']
-        var v_az = data.companies[1]['polarity']
-        var v_pf = data.companies[2]['polarity']
-
-
-        var tracev1 = {
-            type: 'violin',
-            x: v_mo,
-            y0: 'Moderna',
-            points: 'none',
-            box: {
-                visible: true
-            },
-            line: {
-                color: 'green',
-            },
-            showlegend: true,
-            name: 'Moderna',
-            meanline: {
-                visible: true
-            },
-            marker: {
-                line: {
-                    width: 2,
-                    color: "#bebada"
-                },
-                symbol: "line-ns"
-            },
-        }
-
-        var tracev2 = {
-            type: 'violin',
-            x: v_az,
-            y0: 'AstraZeneca',
-            name: 'Astrazeneca',
-            points: 'none',
-            box: {
-                visible: true
-            },
-            line: {
-                color: 'red',
-            },
-            meanline: {
-                visible: true
-            },
-            showlegend: true,
-            marker: {
-                line: {
-                    width: 2,
-                    color: "#bebada"
-                },
-                symbol: "line-ns"
-            },
-        }
-
-        var tracev3 = {
-            type: 'violin',
-            x: v_pf,
-            y0: 'Pfizer',
-            name: 'Pfizer-BioNTech',
-            points: 'none',
-            box: {
-                visible: true
-            },
-            line: {
-                color: 'orange',
-            },
-            meanline: {
-                visible: true
-            },
-            showlegend: true,
-            marker: {
-                line: {
-                    width: 2,
-                    color: "#bebada"
-                },
-                symbol: "line-ns"
-            },
-        }
-        var datav = [tracev1, tracev2, tracev3]
-
-        var layoutv = {
-            title: "Tweet Polarity by Manufacturer",
-            yaxis: {
-                zeroline: false
-            },
-            width: 900,
-            height: 600
-        }
-
-        Plotly.newPlot('display-violins', datav, layoutv);
-    });
-
-}
-
-function PlotViolins2() {
-    d3.json('/manufacturer').then((data) => {
-
-        var v_mo = data.companies[0]['subjectivity']
-        var v_az = data.companies[1]['subjectivity']
-        var v_pf = data.companies[2]['subjectivity']
-
-
-        var tracev1 = {
-            type: 'violin',
-            x: v_mo,
-            y0: 'Moderna',
-            points: 'none',
-            box: {
-                visible: true
-            },
-            line: {
-                color: 'green',
-            },
-            showlegend: true,
-            name: 'Moderna',
-            meanline: {
-                visible: true
-            },
-            marker: {
-                line: {
-                    width: 2,
-                    color: "#bebada"
-                },
-                symbol: "line-ns"
-            },
-        }
-
-        var tracev2 = {
-            type: 'violin',
-            x: v_az,
-            y0: 'AstraZeneca',
-            name: 'Astrazeneca',
-            points: 'none',
-            box: {
-                visible: true
-            },
-            line: {
-                color: 'red',
-            },
-            meanline: {
-                visible: true
-            },
-            showlegend: true,
-            marker: {
-                line: {
-                    width: 2,
-                    color: "#bebada"
-                },
-                symbol: "line-ns"
-            },
-        }
-
-        var tracev3 = {
-            type: 'violin',
-            x: v_pf,
-            y0: 'Pfizer',
-            name: 'Pfizer-BioNTech',
-            points: 'none',
-            box: {
-                visible: true
-            },
-            line: {
-                color: 'orange',
-            },
-            meanline: {
-                visible: true
-            },
-            showlegend: true,
-            marker: {
-                line: {
-                    width: 2,
-                    color: "#bebada"
-                },
-                symbol: "line-ns"
-            },
-        }
-        var datav = [tracev1, tracev2, tracev3]
-
-        var layoutv = {
-            title: "Tweet Subjectivity by Manufacturer",
-            yaxis: {
-                zeroline: false
-            },
-            width: 900,
-            height: 600
-        }
-
-        Plotly.newPlot('display-violins2', datav, layoutv);
-    });
-
-}
-
-PlotViolins();
-PlotViolins2();
-
-var pselect = d3.select('#Radio1')
-var sselect = d3.select('#Radio2')
-
-pselect.on('click', function() {
-    dip2.classed('actived', false)
-    dip2.classed('hided', true)
-    dip.classed('hided', false)
-    dip.classed('actived', true)
-})
-
-
-sselect.on('click', function() {
-    dip2.classed('hided', false)
-    dip2.classed('actived', true)
-    dip.classed('actived', false)
-    dip.classed('hided', true)
-})
-
-// pselect.on('click', function() {
-//     dip.style('opacity', 1);
-//     dip2.style('opacity', 0);
-// });
-
-// sselect.on('click', function() {
-//     dip.style('opacity', 0);
-//     dip2.style('opacity', 1);
-// });
