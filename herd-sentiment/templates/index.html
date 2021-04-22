@@ -194,20 +194,24 @@
                         <div class="row" id="Ttests">
 
                             <div class="col-md-12">
-                                <h3>How different are these sentiments?</h3><br>
-
+                                <h3>How different are these sentiments?</h3>
+                                <p>Comparing Polarity Scores</p>
                             </div>
                         </div>
 
                         <div class="row">
-                            <p>Comparing Polarity Scores</p>
-                            <p>Tweets with AstraZeneca mentions vs Tweets with Moderna mentions
-                            </p>
-                            <img src="{{ url_for('static', filename='images/az_mo.png') }}"><br>
-                            <p>Tweets with Moderna mentions vs Tweets with Pfizer mentions
-                            </p>
-                            <img src="{{ url_for('static', filename='images/mo_pf.png') }}"><br> <br>See all the comparisons in the <a href="https://github.com/NikitaCase/COVID-Vaccine-Sentiment-Analysis/blob/main/herd-sentiment/aggregrations.ipynb" target="_blank">jupyter notebook </a>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
 
+                                <p>Tweets with AstraZeneca mentions vs Tweets with Moderna mentions
+                                </p>
+                                <img src="{{ url_for('static', filename='images/az_mo.png') }}"><br>
+                                <p>Tweets with Moderna mentions vs Tweets with Pfizer mentions
+                                </p>
+                                <img src="{{ url_for('static', filename='images/mo_pf.png') }}"><br>
+                                <p>See all the comparisons in the <a href="https://github.com/NikitaCase/COVID-Vaccine-Sentiment-Analysis/blob/main/herd-sentiment/aggregrations.ipynb" target="_blank">jupyter notebook </a></p>
+                            </div>
+                            <div class="col-md-2"></div>
                         </div>
                     </div>
                 </div>
