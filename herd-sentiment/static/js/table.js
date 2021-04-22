@@ -10,7 +10,6 @@ company.on('change', FilterTweets);
 sentiment.on('change', FilterTweets);
 
 
-
 // creating a function to filter the data
 function FilterTweets() {
 
@@ -67,3 +66,6 @@ button_filter.on("click", FilterTweets);
 form.on("change", FilterTweets);
 
 button_clear.on("click", clear_table);
+
+// 
+FilterTweets();
