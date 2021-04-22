@@ -353,17 +353,27 @@ PlotViolins2();
 var pselect = d3.select('#Radio1')
 var sselect = d3.select('#Radio2')
 
-pselect.on('click', function() {
-    dip2.classed('actived', false)
-    dip2.classed('hided', true)
-    dip.classed('hided', false)
-    dip.classed('actived', true)
-})
+// pselect.on('click', function() {
+//     dip2.classed('actived', false)
+//     dip2.classed('hided', true)
+//     dip.classed('hided', false)
+//     dip.classed('actived', true)
+// })
 
+
+// sselect.on('click', function() {
+//     dip2.classed('hided', false)
+//     dip2.classed('actived', true)
+//     dip.classed('actived', false)
+//     dip.classed('hided', true)
+// })
+
+pselect.on('click', function() {
+    dip.style.display = 'inline'
+    dip2.style.display = 'none'
+});
 
 sselect.on('click', function() {
-    dip2.classed('hided', false)
-    dip2.classed('actived', true)
-    dip.classed('actived', false)
-    dip.classed('hided', true)
-})
+    dip2.style.display = 'inline'
+    dip.style.display = 'none'
+});

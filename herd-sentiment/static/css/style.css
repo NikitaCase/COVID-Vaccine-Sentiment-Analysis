@@ -1,37 +1,10 @@
+/* main elements */
+
 body {
     min-height: 100vh;
     background-color: #08183e;
     background: linear-gradient(to left top, #482677, #1acedf);
     align-items: center;
-}
-
-h1 {
-    color: #481a6c;
-    /* color: #fffaba; */
-}
-
-.actived {
-    opacity: 1;
-}
-
-.hided {
-    display: none;
-}
-
-h3 {
-    color: #f7a332;
-}
-
-h5 {
-    color: #f7a332;
-}
-
-.plot {
-    height: 500px;
-}
-
-.spacer {
-    height: 25px;
 }
 
 .container {
@@ -45,15 +18,32 @@ h5 {
     padding: 15px;
 }
 
-.drop-down,
-select {
-    background-color: #f8f9fa;
-    color: #220c33;
+
+/* page sections */
+
+#Results {
+    background-color: #ffffff;
 }
 
-.drop-down {
-    border-radius: 1rem;
-    padding: 15px;
+#Popularity,
+#scatter {
+    background-color: #f8f9fa;
+}
+
+
+/* text */
+
+h1 {
+    color: #481a6c;
+    /* color: #fffaba; */
+}
+
+h3 {
+    color: #f7a332;
+}
+
+h5 {
+    color: #f7a332;
 }
 
 p,
@@ -68,6 +58,45 @@ li {
     font-size: 16px;
     text-anchor: middle;
 }
+
+
+/*  divs  */
+
+.plot {
+    height: 500px;
+}
+
+.spacer {
+    height: 25px;
+}
+
+
+/*  show and hide divs  */
+
+.actived {
+    opacity: 1;
+}
+
+.hided {
+    display: none;
+}
+
+
+/*  drop downs  */
+
+.drop-down,
+select {
+    background-color: #f8f9fa;
+    color: #220c33;
+}
+
+.drop-down {
+    border-radius: 1rem;
+    padding: 15px;
+}
+
+
+/*  d3 graph */
 
 .active {
     font-weight: bold;
@@ -86,15 +115,6 @@ li {
 .inactive:hover {
     fill: #000;
     cursor: pointer;
-}
-
-#Results {
-    background-color: #ffffff;
-}
-
-#Popularity,
-#scatter {
-    background-color: #f8f9fa;
 }
 
 .stateCircle {
